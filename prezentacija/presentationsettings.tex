@@ -1,0 +1,463 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%                                                                                          %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Settingsi su na dnu, tipa margine i tako sto, al ostalo se isto moze urediti             %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%                                                                                          %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%======================================================================================================================
+%------------------------- Ovdje stvari koje su bile u prezentaciji ali nisam iskoristion, zakomentirano --------------
+%----------------------------------------------------------------------------------------------------------------------
+%\usepackage{lmodern}
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje kopiram stvari koje su mi bile iz .sty filea, ali zaprvo -----------------------------
+%------------------------- se moze vjerojatno maknuti svasta od toga --------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+
+\usepackage[croatian]{babel}
+%\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{wasysym}
+\usepackage{textcomp}
+\usepackage{array}
+\usepackage{arcs}
+\usepackage{polynom}
+\usepackage{cancel}
+\usepackage{enumerate}
+\usepackage{dcolumn}
+\usepackage{xlop}
+\usepackage{geometry}
+\usepackage{xcolor}
+
+\usepackage{amsthm}
+
+% OVO JE IZ STILA ZA DIPLOMSKI KOJI ODREDJUJE MARGINE I TAKO TO
+%\geometry{bindingoffset=12mm,nomarginpar,includeall,left=23mm,right=23mm,top=35mm,bottom=38mm}
+%\setlength\baselineskip{15pt}
+
+%----------------------------------------------------------------------------------------------------------------------
+%PAKETI KOJE SAM JA DODAO KOJI NISU STAJALI U ORIGINALNOM PREDLOŠKU ZA DIPLOMSKI
+
+\usepackage{lipsum}
+%MORA SE MAKNUTI ENUMITEM ZA beamer PREZENTACIJU
+%\usepackage{enumitem}				%za enumeraciju itemiziranje
+\usepackage{soul}					%za podcrtavanje
+\usepackage{soulutf8}				%za podrcrtavanje
+\usepackage{centernot}				%za negacjiu implikacije \centernot\implies da prekrizeno bude na crti
+\usepackage{abraces}				%za lijepši overbrace i underbrace
+\usepackage{import}                 %za lijepo importanje figuresa iz inkscapea
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje namjestam stil za definiciju, teorem, propozicije i sve to ... -----------------------
+%----------------------------------------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------------------------------------
+%----------------OVAJ JEDAN REDAK ISPOD SAM JA DODAO JER MI JE TAKO LJEPŠE RADITI DIPLOMSKI, MAKNUTI PO ŽELJI----------
+\theoremstyle{definition}
+%----------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+
+%\newtheorem{theorem}{Teorem}[\enumeration] % ovo je neki stari pokusaj, ali nije proslo
+
+%ako zelimo enumeraciju da nije 0.0.1 (kada stavis zadatak prije chaptera),
+%onda treba u documentsettings.tex zakomentirati
+%liniju \newtheorem{theorem}{Teorem}[section]
+%i odkomentirati prikladnu liniju
+%\newtheorem{theorem}{Teorem}
+%\newtheorem{theorem}{Teorem}[chapter]
+%\newtheorem{theorem}{Teorem}[section]
+
+%ovo je sada novo s \enumeration commandom u
+%\enumeration
+%\newtheorem{theorem}{Teorem}[]
+%\newtheorem{lemma}[theorem]{Lema}
+%\newtheorem{corollary}[theorem]{Korolar}
+%\newtheorem{definition}[theorem]{Definicija}
+%\newtheorem{remark}[theorem]{Napomena}
+%\newtheorem{proposition}[theorem]{Propozicija}
+%\newtheorem{example}[theorem]{Primjer}
+%\newtheorem{exercise}[theorem]{Zadatak}
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje sam iskopirao kod s stackexchangea koji mi uredjuje proof style ----------------------
+%----------------------------------------------------------------------------------------------------------------------
+%-------------------------------------------------------------------
+%----------------------REDEF PROOF ENVIRONMENT----------------------
+%-------------------------------------------------------------------
+%ove komande mjenjaju proof environment u onakav kakav se meni više sviđa, po volji maknuti
+
+\expandafter\let\expandafter\oldproof\csname\string\proof\endcsname
+\let\oldendproof\endproof
+\renewenvironment{proof}[1][dokaz]{%
+  \oldproof[\underline{\textsc{#1}}\nopunct]%
+}{\oldendproof}
+%-------------------------------------------------------------------
+%------------------------ALTERNATIVNO-------------------------------
+%-------------------------------------------------------------------
+%\newenvironment{myproof}[1][dokaz]{%
+%  \proof[\underline{\textsc{#1}}\nopunct]%
+%}{\endproof}
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%----------------------------------------------------------------------------------------------------------------------
+%\hyphenation{di-men-zi-o-nal-nom} NOTE: ovo ne radi iz nekog razloga
+
+%\addto\croatian{\renewcommand\proofname{ABC}}
+%\renewcommand*{\proofname}{\textsc{dokaz}}
+
+%\usepackage{ulem}
+%mijenja \emph u \underline sa line-breakom
+%alternativno, koristiti soul package
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje sam onda isto tako sklepao nesto za solution environment -----------------------------
+%----------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+
+%---------DEFINICIJA SOLUTION ENVIRONMENTA--------------------
+%\newenvironment{solution}[1][rje\v senje]{%
+%  \oldproof[\underline{\textsc{#1}}\nopunct]%
+%}{\oldendproof}
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje sam iskopirao niz komandi s stackexchangea koji popravljaju \impies u latexu ---------
+%----------------------------------------------------------------------------------------------------------------------
+%-----------------------POPRAVLJA IMPLIES---------------------------
+%-------------------------------------------------------------------
+%ove commande dolje popravljaju \implies i \Longrightarrow , bolje je s ovime.
+% Save original macros
+% --------------------
+%\usepackage{letltxmacro}
+
+\let\OriginalLongrightarrow\Longrightarrow
+\let\OriginalLongleftarrow\Longleftarrow
+
+% Implement new macros
+% --------------------
+\usepackage{trimclip}
+\DeclareRobustCommand\Longrightarrow{\NewRelbar\joinrel\Rightarrow}
+\DeclareRobustCommand\Longleftarrow{\Leftarrow\joinrel\NewRelbar}
+
+\makeatletter
+\DeclareRobustCommand\NewRelbar{%
+  \mathrel{%
+    \mathpalette\@NewRelbar{}%
+  }%
+}
+\newcommand*\@NewRelbar[2]{%
+  % #1: math style
+  % #2: unused
+  \sbox0{$#1=$}%
+  \sbox2{$#1\Rightarrow\m@th$}%
+  \sbox4{$#1\Leftarrow\m@th$}%
+  \clipbox{0pt 0pt \dimexpr(\wd2-.6\wd0) 0pt}{\copy2}%
+  \kern-.2\wd0 %
+  \clipbox{\dimexpr(\wd4-.6\wd0) 0pt 0pt 0pt}{\copy4}%
+}
+\makeatother
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+%-------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje sam namjestio da kada stavimo navodne znake, da izgleda kao na hrvatskom -------------
+%----------------------------------------------------------------------------------------------------------------------
+%za citiranje na hrvatskom
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- OVE NAREDBE ISPOD MJENJAJU KLASIČNI UNDERLINE U POBOLJŠANI ---------------------------------
+%------------------------- (POBOLJŠANI UNDERLINE POŠTUJE PRELAMANJE RIJEČI NA KRAJU RETKA KADA NE STANE) --------------
+%----------------------------------------------------------------------------------------------------------------------
+%\NewCommandCopy{\oldunderline}{\underline}
+\let\oldunderline\underline
+\renewcommand{\underline}[1]{\ul{#1}}
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovo su neke stvari od prije koje se vjerojatno mogu maknuti --------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+
+%\usepackage[pdftex]{graphicx}
+%\pagestyle{headings}
+
+%NOTE: treba popraviti problem sto \vec{\mathbf r} ne postavlja strelicu na ispravnu lokaciju vec je malo slanted kao da je rijec o simbolu koji je slanted
+
+%\edef\restoreparindent{\parindent=\the\parindent\relax}
+%\usepackage[skip=\baselineskip]{parskip}
+%\restoreparindent
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Jezik i stil za babelbib (bibliografiju) i valjda hyphenation ------------------------------
+%------------------------- I jos reference za \cite i takve stvari valjda isto to tu sve ide --------------------------
+%----------------------------------------------------------------------------------------------------------------------
+
+%\usepackage[languagenames,fixlanguage,croatian]{babelbib} %zahtjeva datotetku croatian.bdf
+\usepackage[languagenames,fixlanguage,english]{babelbib}
+
+%\bibliographystyle{babplain} % babamspl ili babplain
+
+%\usepackage[pdftex, hyperfootnotes=false]{hyperref}
+%   hyperref je po defaultu ukljucen u beamer document class, pa ako covjek zeli neke settingse, nominalno
+%   [pdftex, hyperfootnote=false], onda to treba kopirati u settingse documentclassa, nominalno:
+%   \documentclass[aspectratio=43, hyperref={pdftex, hyperfootnotes=false}]{beamer}
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje definiramo svoje operatore -----------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\ctg}{ctg}
+\DeclareMathOperator{\arctg}{arctg}
+\DeclareMathOperator{\arcctg}{arcctg}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\tgh}{th}
+\DeclareMathOperator{\cth}{cth}
+\DeclareMathOperator{\Ker}{Ker}
+
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\trag}{trag}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\const}{const.}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\rg}{rg}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\trace}{trag}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Alt}{Alt}
+\DeclareMathOperator{\fff}{I}
+\DeclareMathOperator{\sff}{II}
+\DeclareMathOperator{\firstfundform}{I}
+\DeclareMathOperator{\secondfundform}{II}
+
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Aut}{Aut}
+
+\DeclareMathOperator{\separator}{|}
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje definiram svoje naredbe --------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+%NOTE: treba popraviti problem sto \vec{\mathbf r} ne postavlja strelicu na ispravnu lokaciju vec je malo slanted kao da je rijec o simbolu koji je slanted
+
+\newcommand{\vectorstyle}[1]{\vec{\mathbf{#1}}}
+\newcommand{\vectorderivative}{{\,\prime}}
+
+%-------------------------------------------------------------------------------------------------------------------------------
+
+\newcommand{\norm}{|\kern-0.083em|\kern-0.083em|}
+\newcommand{\transp}{{\textsc{t}}}
+\newcommand{\euklidski}{\textsc{e}}
+\newcommand{\minkowski}{\textsc{m}}
+\newcommand{\ArrayOffset}{$\kern-0.76016em$ }
+\newcommand{\ArrayAlignOffset}{\kern-0.21em }
+\newcommand{\newoverbrace}[1]{\aoverbrace[L1R]{#1}[U]}
+\newcommand{\newunderbrace}[1]{\aunderbrace[l1r]{#1}[D]}
+\newcommand{\prescript}[2]{\vphantom{#2}^{#1}#2}
+% ovo ne radi nesto, gledao sam na stackechangeu, evo link
+% https://tex.stackexchange.com/questions/272850/use-verbatim-inside-newcommand
+% \newcommand{\inlinecode}[1]{\verb|#1|}
+
+\def\derivative{\dot}
+\def\dderivative{\ddot}
+\def\ddderivative{\dddot}
+%\def\derivative{\overset{\text{.}}}
+%\def\dderivative{\overset{\text{..}}}
+
+\newcommand{\qbinom}[2]{\binom{#1}{#2}_q}
+\newcommand{\qint}[1]{[#1]_q}
+\newcommand{\qfallingpower}[1]{{\oldunderline{#1}}_q}
+\newcommand{\qrisingpower}[1]{{\overline{#1}}_q}
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje definiram svoje naredbe za uredjivanje teksta, tipa \emph ali nesto svoje ------------
+%----------------------------------------------------------------------------------------------------------------------
+%\newcommand{\alert}[1]{{\color{red}#1}}
+\newcommand{\hide}[1]{{\color{gray}#1}}
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+%======================================================================================================================
+%------------------------- Ovdje idu sada stvari iz metropolis teme za prezentaciju -----------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+%\usetheme[progressbar=frametitle]{metropolis}
+\usetheme{metropolis}
+\setbeamertemplate{frame numbering}[fraction]
+\useoutertheme{metropolis}
+\useinnertheme{metropolis}
+\usefonttheme{metropolis}
+%\usecolortheme{spruce}
+%\setbeamercolor{background canvas}{bg=white}
+\usefonttheme{serif}
+
+%\definecolor{mygreen}{rgb}{.125,.5,.25}
+%\usecolortheme[named=mygreen]{structure}
+
+% Copyright 2012 by Alan Munn <amunn@msu.edu>  Modified for MSU colours 
+% Copyright 2004 by Madhusudan Singh <madhusudan.singh@gmail.com>
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+%
+
+\mode<presentation>
+
+\definecolor{MyColor}{RGB}{204,0,0}
+\definecolor{MyBgColor}{RGB}{219,76,76}
+\definecolor{MyFontColor}{RGB}{50,0,0} 
+% Approximate match for Michigan State University; official colour appears too dark
+
+\setbeamercolor{normal text}{fg=black, bg=white}
+\setbeamercolor{example text}{fg=black}
+
+\setbeamercolor{alerted text}{fg=MyColor!80!white}
+\setbeamercolor*{palette primary}{fg=MyColor!50!black,bg=white!90!MyBgColor}
+\setbeamercolor*{palette secondary}{fg=MyColor!60!black,bg=white!60!MyColor}
+\setbeamercolor*{palette tertiary}{bg=MyColor!70!black,fg=white!50!MyColor}
+\setbeamercolor*{palette quaternary}{fg=MyColor!80!black,bg=white!20!MyColor}
+
+\setbeamercolor*{sidebar}{fg=MyColor,bg=MyColor!75!white}
+
+\setbeamercolor*{palette sidebar primary}{fg=MyColor!10!black}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{fg=MyColor!50!black}
+\setbeamercolor*{palette sidebar quaternary}{fg=white!10!MyColor}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor{frametitle}{bg=white!80!MyBgColor}
+\setbeamercolor{frametitle right}{bg=white!60!MyColor}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=red!0,fg=}
+\mode
+<all>
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
+
+%======================================================================================================================
+%------------------------- Ovdje ide definiranje naslovne stranice i jos neki dodatni settingsi -----------------------
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\presentationdate}[1]{\def\myPresentationDate{#1}}
+\newcommand{\authorname}[1]{\author{\texorpdfstring{#1\hfill \myPresentationDate{}}{#1}}}
+%\subtitle{Seminar za geometriju}
+%\subtitle{Subtitle Here}
+\newcommand{\institutename}[1]{
+    \institute{#1%
+            \begin{figure}%
+            \centering%
+            \includegraphics[width=0.5\textwidth]{assets/fer.png}%
+            \quad%
+            \includegraphics[width=0.3\textwidth]{assets/hrzz.jpg}%
+            \end{figure}%
+            \hfill rad podr\v zan HRZZ projektom IP-2020-02-9752%
+    }%
+}
+%\institute{\large \textbf{Learning Outcomes}: \\[6pt] Identify properties of elementary functions (formed by composition of power, exponential, logarithmic, and trigonometric functions and their inverses).}
+%\date{\scriptsize{Zagreb, srpanj 2021.}}
+\date{}
+
+\setbeamercovered{transparent=5}
+
+\metroset{block=fill}
+
+% Ovdje sada kopiram staru verziju ovog setupa cisto tako da ako se zelim vratiti na staro:
+%   \title{Konstrukcija dizajna metodom takti\v cke dekompozicije}
+%   %\subtitle{Seminar za geometriju}
+%   %\subtitle{Subtitle Here}
+%   \author{\texorpdfstring{Filip Martinović\hfill velja\v ca, 2023.}{Filip Martinović}}
+%   \institute[Sveučilište u Zagrebu]{Sveučilište u Zagrebu, Fakultet elektrotehnike i ra\v cunarstva
+%           \begin{figure}
+%           \centering
+%           \includegraphics[width=0.5\textwidth]{slike/unilogo.png}
+%           \quad
+%           \includegraphics[width=0.3\textwidth]{slike/hrzz.jpg}
+%           \end{figure}
+%           \hfill rad podr\v zan HRZZ projektom IP-2020-02-9752
+%   }
+%   %\institute{\large \textbf{Learning Outcomes}: \\[6pt] Identify properties of elementary functions (formed by composition of power, exponential, logarithmic, and trigonometric functions and their inverses).}
+%   %\date{\scriptsize{Zagreb, srpanj 2021.}}
+%   \date{}
+%   
+%   \setbeamercovered{transparent=5}
+%   
+%   \metroset{block=fill}
+
+\setbeamertemplate{frametitle continuation}{} % ovo sluzi da kada napravis allowframebreaks, da ne numerira to
+
+%----------------------------------------------------------------------------------------------------------------------
+%======================================================================================================================
+
